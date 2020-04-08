@@ -15,7 +15,9 @@ exports[`Should render expense item list 1`] = `
    
   <br />
   Amount: 
-  195
+  $1.95
+  CreatedAt: 
+  January 1st,1970
   <br />
   <br />
 </div>
