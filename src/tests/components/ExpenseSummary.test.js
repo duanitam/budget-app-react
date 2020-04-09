@@ -1,7 +1,6 @@
 import  { ExpenseSummary }  from "../../components/ExpensesSummary";
 import { shallow } from 'enzyme';
 import React from 'react';
-import { expenses } from '../fixtures/expenses';
 
 
 beforeEach( ()=> {
