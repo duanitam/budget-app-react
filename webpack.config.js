@@ -5,14 +5,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 process.env.NODE_ENV =  process.env.NODE_ENV || 'development';
 
 
-if (process.env.NODE_ENV === 'test'){
+// if (process.env.NODE_ENV === 'test'){
     require('dotenv').config({path: '.env.development'});
-    console.log('FROM TEST', process.env.NODE_ENV, '----------\n\n');
-}
-else if(process.env.NODE_ENV === 'development'){
-    require('dotenv').config({path: '.env.development'});
-    console.log('FROM DEV', process.env.NODE_ENV, '----------\n\n');
-}
+// }
+// else if(process.env.NODE_ENV === 'development'){
+//     require('dotenv').config({path: '.env.development'});
+// }
 
 module.exports = (env) => {
 

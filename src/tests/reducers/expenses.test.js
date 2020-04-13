@@ -1,5 +1,6 @@
 import expensesReducer from "../../reducers/expenses";
 import { expenses } from "../fixtures/expenses";
+import {createStore} from "redux";
 
 test('Should set default state', () => {
     const state = expensesReducer(undefined, { type: '@@INIT'});
@@ -48,3 +49,10 @@ test('Should not edit expenses if expense was not found', () => {
     const state = expensesReducer(expenses, action);
     expect(state).toEqual(expenses);
 });
+
+test('should set expenses', () => {
+    const action = { type: 'SET_EXPENSES', expenses};
+    const state = expensesReducer([{id:0},{id:3}], action);
+    expect(state).toEqual(expenses);
+});
+

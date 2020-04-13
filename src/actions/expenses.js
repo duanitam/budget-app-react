@@ -8,14 +8,14 @@ export const addExpense = (expense) => ({
 });
 
 export const startAddExpense = (expenseData = {}) => {
+
     return (dispatch)=>{
         const {  description = '', note = '', amount = 0, createdAt = 0 } = expenseData;
         const expense = { description, note, amount, createdAt};
 
         // Push the data in firebase database.
-        // Return a promise so we can chain it in the test-----
-
-       return database.ref('expenses').push(expense)
+        // Return a promise so we can chain it -----
+        return database.ref('expenses').push(expense)
             .then( (ref) => {
             dispatch(addExpense({
                 id:ref.key, ...expense})) })
@@ -33,3 +33,21 @@ export const editExpense = (id, update) => ({
     id,
     update
 });
+
+export const setExpenses = (expenses) => ({
+    type: 'SET_EXPENSES',
+    expenses
+});
+
+
+export const startSetExpenses = () => {
+
+    return (dispatch) => {
+        const expenses = [];
+
+        return database.ref('expenses').once('value').then ((snapshot) => {
+            for (let [key, value] of Object.entries((snapshot.val()))) { expenses.push({id:key,...value}) }
+            dispatch(setExpenses(expenses));
+        });
+    }
+};

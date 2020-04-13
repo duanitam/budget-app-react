@@ -12,6 +12,9 @@ const expensesReducer = (state=expensesReducerDefaultState, action) => {
 
         case 'EDIT_EXPENSE':
             return state.map(item => (item.id === action.id) ? ({...item,...action.update}): (item));
+        case 'SET_EXPENSES':
+            return action.expenses;
+
         default:
             return state
     }
