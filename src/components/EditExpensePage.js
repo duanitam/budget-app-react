@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import ExpenseForm from './ExpenseForm';
-import {removeExpense, editExpense} from "../actions/expenses";
+import { startRemoveExpense, editExpense } from "../actions/expenses";
 
 
 
@@ -33,7 +33,7 @@ const mapStateToProps = (state, props) =>
     ({ expense: state.expenses.find( expense => expense.id === props.match.params.id )});
 
 const mapDispatchToProps = (dispatch, props) => ({
-        removeExpense: (data) => dispatch(removeExpense(data)),
+        removeExpense: (id) => dispatch(startRemoveExpense(id)),
         editExpense: (id, expense) => dispatch(editExpense(id,expense))
     });
 
