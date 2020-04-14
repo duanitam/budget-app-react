@@ -8,14 +8,14 @@ export const addExpense = (expense) => ({
 });
 
 export const startAddExpense = (expenseData = {}) => {
-
-    return (dispatch)=>{
+    return (dispatch, getState)=>{
+        const uid = getState().auth.uid;
         const {  description = '', note = '', amount = 0, createdAt = 0 } = expenseData;
         const expense = { description, note, amount, createdAt};
 
         // Push the data in firebase database.
         // Return a promise so we can chain it -----
-        return database.ref('expenses').push(expense)
+        return database.ref(`users/${uid}/expenses`).push(expense)
             .then( (ref) => {
             dispatch(addExpense({
                 id:ref.key, ...expense})) })
@@ -42,27 +42,32 @@ export const setExpenses = (expenses) => ({
 
 export const startSetExpenses = () => {
 
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         const expenses = [];
 
-        return database.ref('expenses').once('value').then ((snapshot) => {
-            for (let [key, value] of Object.entries((snapshot.val()))) { expenses.push({id:key,...value}) }
+        return database.ref(`users/${uid}/expenses`).once('value')
+            .then ((snapshot) => {
+            snapshot.forEach( (item) => {
+                expenses.push({id:item.key , ...item.val()})});
             dispatch(setExpenses(expenses));
         });
     }
 };
 
 export const startRemoveExpense = (id) => {
-    return (dispatch) => {
-        return database.ref(`expenses/${id}`).remove().then(()=>{
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/expenses/${id}`).remove().then(()=>{
             dispatch(removeExpense({id}));
         })
     }
 };
 
 export const startEditExpense = (id, update) => {
-    return (dispatch) => {
-        return database.ref(`expenses/${id}`).update(update)
+    return (dispatch,getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/expenses/${id}`).update(update)
             .then( () =>{
                 dispatch(editExpense(id,update));
             })
