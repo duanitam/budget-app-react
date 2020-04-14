@@ -1,5 +1,6 @@
 import  * as firebase from 'firebase';
 
+
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
     authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -16,7 +17,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
-
+// Provider for authentication.
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 // database.ref('expenses')
 //     .on('child_removed', (snapshot) => {
@@ -122,4 +124,4 @@ const database = firebase.database();
 // }).then(()=>{console.log('Object Updated')}).
 // catch((e)=>{ console.log('Could not update: ',e)});
 
-export { firebase, database as default };
+export { googleAuthProvider, firebase, database as default };
