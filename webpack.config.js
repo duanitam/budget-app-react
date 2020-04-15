@@ -19,7 +19,7 @@ module.exports = (env) => {
     const CSSExtract = new ExtractTextPlugin('/styles.css');
 
     return{
-        entry: "./src/app.js",
+        entry: ['babel-polyfill', "./src/app.js"],
         output: {
             path: path.join(__dirname,'public', 'dist'),
             filename: 'bundle.js'
@@ -29,8 +29,8 @@ module.exports = (env) => {
                 loader: 'babel-loader',
                 test: /\.js$/,
                 exclude: /node_modules/
-            }
-            ,{test: /\.s?css$/,
+            },{
+                test: /\.s?css$/,
                 // use - Allow to use two loaders.
                 // css-loader - allow webpack load in css assets - teach it how to take css and convert it to js representation od it
                 // style-loader - take css in js after css loaded it, and inject it to the DOM by injecting <style> tag
