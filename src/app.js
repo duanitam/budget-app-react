@@ -5,6 +5,7 @@ import AppRouter, {history} from './routers/AppRouter'
 import { Provider } from 'react-redux';
 import { startSetExpenses } from "./actions/expenses";
 import { login, logout } from './actions/auth'
+import LoaginPage from './components/LoadingPage'
 import './styles/styles.scss';
 import 'normalize.css/normalize.css';       // Normalizing the pages, so no difference between safari chrome ca.
 import 'react-dates/lib/css/_datepicker.css'
@@ -21,13 +22,16 @@ const renderApp = () => {
   }
 };
 
+
 const jsx = (
     <Provider store={store }>
         <AppRouter />
     </Provider>
 );
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById('app') );
+
+
+ReactDOM.render(<LoaginPage />, document.getElementById('app') );
 
 // Run the callback when user toggling authentication
 firebase.auth().onAuthStateChanged( (user) => {

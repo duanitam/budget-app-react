@@ -16,7 +16,7 @@ module.exports = (env) => {
 
     const isProduction = env === 'production';
     //  Creating a new instanse of extract file. instead of bundle all together, will bundle separate css js files
-    const CSSExtract = new ExtractTextPlugin('styles.css');
+    const CSSExtract = new ExtractTextPlugin('/styles.css');
 
     return{
         entry: "./src/app.js",
@@ -29,8 +29,8 @@ module.exports = (env) => {
                 loader: 'babel-loader',
                 test: /\.js$/,
                 exclude: /node_modules/
-            },{
-                test: /\.s?css$/,
+            }
+            ,{test: /\.s?css$/,
                 // use - Allow to use two loaders.
                 // css-loader - allow webpack load in css assets - teach it how to take css and convert it to js representation od it
                 // style-loader - take css in js after css loaded it, and inject it to the DOM by injecting <style> tag
