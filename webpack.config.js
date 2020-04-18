@@ -5,18 +5,18 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 process.env.NODE_ENV =  process.env.NODE_ENV || 'development';
 
 
-// if (process.env.NODE_ENV === 'test'){
+if (process.env.NODE_ENV === 'test'){
     require('dotenv').config({path: '.env.development'});
-// }
-// else if(process.env.NODE_ENV === 'development'){
-//     require('dotenv').config({path: '.env.development'});
-// }
+}
+else if(process.env.NODE_ENV === 'development'){
+    require('dotenv').config({path: '.env.development'});
+}
 
 module.exports = (env) => {
 
     const isProduction = env === 'production';
-    //  Creating a new instanse of extract file. instead of bundle all together, will bundle separate css js files
-    const CSSExtract = new ExtractTextPlugin('/styles.css');
+    //  Creating a new instance of extract file. instead of bundle all together, will bundle separate css js files
+    const CSSExtract = new ExtractTextPlugin('styles.css');
 
     return{
         entry: ['babel-polyfill', "./src/app.js"],
