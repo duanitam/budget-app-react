@@ -1,9 +1,9 @@
 # budget-app-react
 
-Expenses management tool, Built with ReactJS, Redux, NodeJS, Express.js. Includes users authentication with firebase.
+Expenses management tool, built with ReactJS, Redux, NodeJS, Express.js. Includes users authentication with firebase.
 Use the budget-app to track your expenses.  
-After authenticating with your Google account (Firebase), you will be able to get into your personal space with all your listed expenses.  
-You can easily add, edit, remove and filter expenses from the list.
+Authenticate with Google account (Firebase), and get into personal space with all the listed expenses for this account.  
+Easily add, edit, remove and filter expenses from the list.
 
 
 ## Scripts  
